@@ -233,8 +233,20 @@ describe("twitter antispam", function () {
 </div>\
 ');
   });
-  it("testset", function () {
-      expect($("#fixture").text()).toEqual("asdf");
+
+
+
+  // now the actual specs begin
+  it("can find tweets (aka stream-items)", function () {
+      expect($(".stream-item").length).toEqual(2);
   });
+
+  it("can find tweets containing specific text", function() {
+    var turtles = $(".tweet-text").filter(function() {
+      return $(this).text().match(/I like turtles/);
+    });
+    expect(turtles.length).toEqual(1);
+  });
+
 });
 
