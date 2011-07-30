@@ -3,6 +3,9 @@
 // just load the file like a normal person
 
 describe("twitter antispam", function () {
+  afterEach(function () {
+    $("#fixture").remove();
+  });
   beforeEach(function () {
     $("#fixture").remove();
     $("body").append('\
