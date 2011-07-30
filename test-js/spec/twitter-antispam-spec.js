@@ -237,7 +237,7 @@ describe("twitter antispam", function () {
 
 
   // now the actual specs begin
-  it("can find tweets (aka stream-items)", function () {
+  it("can find tweets (aka stream-items)", function() {
       expect($(".stream-item").length).toEqual(2);
   });
 
@@ -246,6 +246,24 @@ describe("twitter antispam", function () {
       return $(this).text().match(/I like turtles/);
     });
     expect(turtles.length).toEqual(1);
+  });
+
+  it("can find tweeted URLs", function() {
+    var spam = $(".tweet-text").find(".twitter-timeline-link");
+    expect($(spam).text()).toEqual("bit.ly/dDhdQH");
+  });
+
+  it("can find a tweet which contains no text other than a URL", function() {
+    // really I should use better demo data, but zomg, what a pita
+    var possible_spam = $(".tweet-text").
+                          find(".twitter-timeline-link").
+                          closest(".tweet-text").
+                          clone();
+
+    possible_spam.find(".twitter-timeline-link").remove();
+    possible_spam.find(".twitter-atreply").remove();
+
+    expect($.trim($(possible_spam).text())).toEqual("");
   });
 
 });
