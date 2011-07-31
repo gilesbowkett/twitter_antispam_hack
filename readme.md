@@ -14,3 +14,8 @@ this is all very trivial jQuery; the effort comes from filtering through Twitter
 the other tricky part, of course, is that tweets are loaded live, so you can't just run the JS
 the moment the page loads, which is the simple case for dotjs.
 
+fuck me. I might have to monkeypatch jQuery on twitter, and have it pass its normal success callback
+through some kind of filter. that sounds horrible, but if it works, the advantage could be that
+you filter at the JSON data level, instead of the DOM level, which would almost undoubtedly be less
+painful.
+
